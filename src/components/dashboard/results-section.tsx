@@ -29,7 +29,15 @@ import {
   Eye,
   Download,
   Share,
-  ExternalLink
+  ExternalLink,
+  Newspaper,
+  Youtube,
+  Instagram,
+  Calendar,
+  Users,
+  TrendingUp,
+  Share2,
+  Globe
 } from 'lucide-react';
 
 interface ResultsSectionProps {
@@ -69,12 +77,26 @@ export function ResultsSection({ results }: ResultsSectionProps) {
   } = results;
 
   const getContentIcon = (type: string) => {
-    switch (type) {
+    // Check if results contain platform information
+    if (results.platform) {
+      switch (results.platform.toLowerCase()) {
+        case 'youtube': return Youtube;
+        case 'instagram': return Instagram;
+        case 'tiktok': return FileVideo;
+        default: break;
+      }
+    }
+    
+    // Check content type
+    switch (type.toLowerCase()) {
       case 'image': return FileImage;
-      case 'video': return FileVideo;
+      case 'video': 
+      case 'video content': return FileVideo;
       case 'audio': return FileAudio;
-      case 'text': return FileText;
-      case 'url': return LinkIcon;
+      case 'text':
+      case 'text analysis': return FileText;
+      case 'url':
+      case 'news article': return results.source ? Newspaper : LinkIcon;
       default: return FileImage;
     }
   };
@@ -146,11 +168,38 @@ export function ResultsSection({ results }: ResultsSectionProps) {
               verificationStatus === 'verified' ? 'text-green-500' : 'text-red-500'
             }`} />
           </div>
-          <div>
-            <h2 className="font-semibold text-lg text-foreground">{title}</h2>
-            <p className="text-muted-foreground">
-              Analyzed on {new Date(timestamp).toLocaleString()}
-            </p>
+          <div className="flex-1">
+            <div className="flex items-center space-x-3 mb-1">
+              <h2 className="font-semibold text-lg text-foreground">
+                {results.headline || results.videoTitle || title}
+              </h2>
+              {results.platform && (
+                <Badge variant="outline" className="text-xs">
+                  {results.platform}
+                </Badge>
+              )}
+            </div>
+            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+              {results.source && (
+                <div className="flex items-center space-x-1">
+                  <Newspaper className="w-4 h-4" />
+                  <span>{results.source}</span>
+                </div>
+              )}
+              {results.channel && (
+                <div className="flex items-center space-x-1">
+                  <Users className="w-4 h-4" />
+                  <span>{results.channel}</span>
+                </div>
+              )}
+              {results.publishDate && (
+                <div className="flex items-center space-x-1">
+                  <Calendar className="w-4 h-4" />
+                  <span>{results.publishDate}</span>
+                </div>
+              )}
+              <span>Analyzed on {new Date(timestamp).toLocaleString()}</span>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -286,11 +335,157 @@ export function ResultsSection({ results }: ResultsSectionProps) {
         </motion.div>
       </div>
 
+      {/* Enhanced Content Analysis for News/Social Media */}
+      {(results.contentAnalysis || results.socialMetrics || results.sourceCredibility) && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="space-y-6"
+        >
+          {/* Content Quality Metrics */}
+          {results.contentAnalysis && (
+            <Card className="glass p-6">
+              <h3 className="font-orbitron text-xl font-semibold mb-6 flex items-center">
+                <TrendingUp className="w-6 h-6 mr-3 text-primary-ai" />
+                Content Quality Analysis
+              </h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Language Quality</span>
+                    <span className="text-sm font-medium">{results.contentAnalysis.languageQuality?.toFixed(0)}%</span>
+                  </div>
+                  <Progress value={results.contentAnalysis.languageQuality} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Citation Quality</span>
+                    <span className="text-sm font-medium">{results.contentAnalysis.citationQuality?.toFixed(0)}%</span>
+                  </div>
+                  <Progress value={results.contentAnalysis.citationQuality} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Fact Density</span>
+                    <span className="text-sm font-medium">{results.contentAnalysis.factDensity?.toFixed(0)}%</span>
+                  </div>
+                  <Progress value={results.contentAnalysis.factDensity} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Sensationalism</span>
+                    <span className="text-sm font-medium">{results.contentAnalysis.sensationalismScore?.toFixed(0)}%</span>
+                  </div>
+                  <Progress value={results.contentAnalysis.sensationalismScore} className="h-2" />
+                </div>
+              </div>
+            </Card>
+          )}
+
+          {/* Social Media Metrics */}
+          {results.socialMetrics && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="glass p-6">
+                <h3 className="font-orbitron text-xl font-semibold mb-6 flex items-center">
+                  <Share2 className="w-6 h-6 mr-3 text-primary-human" />
+                  Social Impact
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center p-3 rounded-lg bg-muted/20">
+                    <div className="text-2xl font-bold text-foreground">{results.socialMetrics.shares?.toLocaleString()}</div>
+                    <div className="text-xs text-muted-foreground">Shares</div>
+                  </div>
+                  <div className="text-center p-3 rounded-lg bg-muted/20">
+                    <div className="text-2xl font-bold text-foreground">{results.socialMetrics.engagement?.toFixed(1)}%</div>
+                    <div className="text-xs text-muted-foreground">Engagement</div>
+                  </div>
+                  <div className="text-center p-3 rounded-lg bg-muted/20">
+                    <div className="text-2xl font-bold text-foreground">{results.socialMetrics.viralityScore?.toFixed(0)}</div>
+                    <div className="text-xs text-muted-foreground">Virality</div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Source Credibility for News */}
+              {results.sourceCredibility && (
+                <Card className="glass p-6">
+                  <h3 className="font-orbitron text-xl font-semibold mb-6 flex items-center">
+                    <Shield className="w-6 h-6 mr-3 text-primary-ai" />
+                    Source Credibility
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Source Rating:</span>
+                      <span className="font-medium">{results.sourceCredibility.rating?.toFixed(1)}/10</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Factual Reporting:</span>
+                      <span className="font-medium">{results.sourceCredibility.factualReporting}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Political Bias:</span>
+                      <span className="font-medium">{results.sourceCredibility.bias}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Reputation:</span>
+                      <span className="font-medium">{results.sourceCredibility.reputation}</span>
+                    </div>
+                  </div>
+                </Card>
+              )}
+            </div>
+          )}
+
+          {/* Cross-verification */}
+          {results.crossChecking && (
+            <Card className="glass p-6">
+              <h3 className="font-orbitron text-xl font-semibold mb-6 flex items-center">
+                <Globe className="w-6 h-6 mr-3 text-primary-ai" />
+                Cross-Verification
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium text-foreground mb-3 text-green-600">✓ Verified Sources</h4>
+                  {results.crossChecking.verifiedSources?.length > 0 ? (
+                    <div className="space-y-2">
+                      {results.crossChecking.verifiedSources.map((source: string, index: number) => (
+                        <div key={index} className="flex items-center space-x-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-green-500" />
+                          <span>{source}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No verified sources found</p>
+                  )}
+                </div>
+                <div>
+                  <h4 className="font-medium text-foreground mb-3 text-red-600">⚠ Contradictory Sources</h4>
+                  {results.crossChecking.contradictorySources?.length > 0 ? (
+                    <div className="space-y-2">
+                      {results.crossChecking.contradictorySources.map((source: string, index: number) => (
+                        <div key={index} className="flex items-center space-x-2 text-sm">
+                          <XCircle className="w-4 h-4 text-red-500" />
+                          <span>{source}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No contradictory sources found</p>
+                  )}
+                </div>
+              </div>
+            </Card>
+          )}
+        </motion.div>
+      )}
+
       {/* Sources and Detailed Analysis */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.6 }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Sources Verification */}
