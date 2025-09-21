@@ -13,7 +13,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename={import.meta.env.PROD && !import.meta.env.VERCEL ? "/DeepCheck" : ""}>
+      <BrowserRouter basename={(window as any).__IS_GITHUB_PAGES__ ? "/DeepCheck" : ""}>
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
