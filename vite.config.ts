@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/DeepCheck/',
+  base: process.env.NODE_ENV === 'production' && process.env.VERCEL !== '1' ? '/DeepCheck/' : '/',
   server: {
     host: "::",
     port: 8080,
