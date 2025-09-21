@@ -2,11 +2,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { DashboardSidebar } from './dashboard-sidebar';
 import { UploadSection } from './upload-section';
+import { NewsCheckerSection } from './news-checker-section';
+import { SocialMediaCheckerSection } from './social-media-checker-section';
+import { YouTubeCheckerSection } from './youtube-checker-section';
 import { ResultsSection } from './results-section';
 import { HistorySection } from './history-section';
 import { SettingsSection } from './settings-section';
 
-export type DashboardView = 'upload' | 'results' | 'history' | 'settings';
+export type DashboardView = 'upload' | 'news-checker' | 'social-media' | 'youtube-checker' | 'results' | 'history' | 'settings';
 
 interface DashboardPageProps {
   onLogout: () => void;
@@ -25,6 +28,12 @@ export function DashboardPage({ onLogout }: DashboardPageProps) {
     switch (currentView) {
       case 'upload':
         return <UploadSection onAnalysisComplete={handleAnalysisComplete} />;
+      case 'news-checker':
+        return <NewsCheckerSection onAnalysisComplete={handleAnalysisComplete} />;
+      case 'social-media':
+        return <SocialMediaCheckerSection onAnalysisComplete={handleAnalysisComplete} />;
+      case 'youtube-checker':
+        return <YouTubeCheckerSection onAnalysisComplete={handleAnalysisComplete} />;
       case 'results':
         return <ResultsSection results={analysisResults} />;
       case 'history':

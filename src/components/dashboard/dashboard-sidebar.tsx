@@ -10,7 +10,10 @@ import {
   Sparkles,
   User,
   Menu,
-  X
+  X,
+  Newspaper,
+  Video,
+  Youtube
 } from 'lucide-react';
 import { DashboardView } from './dashboard-page';
 import { useState } from 'react';
@@ -27,6 +30,24 @@ const navigationItems = [
     label: 'Analyze Content', 
     icon: Upload, 
     description: 'Upload & verify content'
+  },
+  { 
+    id: 'news-checker' as DashboardView, 
+    label: 'News Checker', 
+    icon: Newspaper, 
+    description: 'Verify news articles'
+  },
+  { 
+    id: 'social-media' as DashboardView, 
+    label: 'Social Media', 
+    icon: Video, 
+    description: 'Check reels & videos'
+  },
+  { 
+    id: 'youtube-checker' as DashboardView, 
+    label: 'YouTube Checker', 
+    icon: Youtube, 
+    description: 'Analyze YouTube content'
   },
   { 
     id: 'results' as DashboardView, 
