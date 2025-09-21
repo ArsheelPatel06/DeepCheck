@@ -40,9 +40,11 @@ export function LandingPage({ onLogin }: LandingPageProps) {
         >
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-ai flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-primary-ai-foreground" />
-              </div>
+              <img 
+                src="/deepcheck-logo.svg" 
+                alt="DeepCheck Logo" 
+                className="w-10 h-10"
+              />
               <h1 className="font-orbitron text-2xl font-bold gradient-neon-text">
                 DeepCheck
               </h1>
@@ -77,7 +79,21 @@ export function LandingPage({ onLogin }: LandingPageProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <div className="space-y-4">
+              <div className="space-y-6">
+                {/* Large Logo */}
+                <motion.div
+                  className="flex justify-center lg:justify-start mb-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <img 
+                    src="/deepcheck-logo.svg" 
+                    alt="DeepCheck AI-Powered Misinformation Detection" 
+                    className="w-32 h-32 lg:w-40 lg:h-40 glow-ai"
+                  />
+                </motion.div>
+                
                 <motion.div
                   className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-ai/10 border border-primary-ai/20 glow-ai"
                   whileHover={{ scale: 1.05 }}

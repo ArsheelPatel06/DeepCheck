@@ -95,9 +95,11 @@ export function DashboardSidebar({ currentView, onViewChange, onLogout }: Dashbo
           transition={{ delay: 0.1 }}
         >
           <div className="flex items-center space-x-3 px-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-ai flex items-center justify-center glow-ai">
-              <Sparkles className="w-6 h-6 text-primary-ai-foreground" />
-            </div>
+            <img 
+              src="/deepcheck-logo.svg" 
+              alt="DeepCheck Logo" 
+              className="w-10 h-10 glow-ai"
+            />
             {!isCollapsed && (
               <div>
                 <h1 className="font-orbitron text-lg font-bold gradient-neon-text">
