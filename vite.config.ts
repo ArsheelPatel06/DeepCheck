@@ -4,8 +4,25 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const isGitHubPages = process.env.GITHUB_PAGES === 'true' || process.env.CI === 'true';
+  // More robust GitHub Pages detection
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true' || 
+                       process.env.CI === 'true' || 
+                       process.env.GITHUB_ACTIONS === 'true' ||
+                       mode === 'github-pages';
+  
   const baseUrl = isGitHubPages ? '/DeepCheck/' : '/';
+  
+  console.log('Build configuration:', {
+    isGitHubPages,
+    baseUrl,
+    env: {
+      GITHUB_PAGES: process.env.GITHUB_PAGES,
+      CI: process.env.CI,
+      GITHUB_ACTIONS: process.env.GITHUB_ACTIONS,
+    },
+    mode,
+    command
+  });
   
   return {
     base: baseUrl,
