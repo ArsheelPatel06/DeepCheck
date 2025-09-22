@@ -12,18 +12,6 @@ export default defineConfig(({ command, mode }) => {
   
   const baseUrl = isGitHubPages ? '/DeepCheck/' : '/';
   
-  console.log('Build configuration:', {
-    isGitHubPages,
-    baseUrl,
-    env: {
-      GITHUB_PAGES: process.env.GITHUB_PAGES,
-      CI: process.env.CI,
-      GITHUB_ACTIONS: process.env.GITHUB_ACTIONS,
-    },
-    mode,
-    command
-  });
-  
   return {
     base: baseUrl,
     server: {

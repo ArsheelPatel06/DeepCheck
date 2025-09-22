@@ -95,7 +95,7 @@ export function DashboardSidebar({ currentView, onViewChange, onLogout }: Dashbo
         >
           <div className="flex items-center space-x-3 px-3">
             <img
-              src="/logo.svg"
+              src={window.location.hostname === 'arsheelpatel06.github.io' ? "/DeepCheck/logo.svg" : "/logo.svg"}
               alt="DeepCheck Logo"
               className="w-10 h-10"
             />

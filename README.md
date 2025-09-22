@@ -1,197 +1,164 @@
-# DeepCheck - AI-Powered Misinformation Detection Tool
+# DeepCheck - AI-Powered Misinformation Detection
 
-DeepCheck is an advanced AI-powered tool designed to combat misinformation and educate users on identifying credible, trustworthy content. Built with modern web technologies, it provides real-time analysis of text, images, videos, audio files, and URLs to detect potential misinformation.
+![DeepCheck Logo](./public/logo.svg)
 
-## 🎯 Problem Statement
+**Advanced AI tool for detecting misinformation, analyzing content authenticity, and educating users on digital literacy.**
 
-The rapid spread of fake news and misinformation across social media and messaging platforms poses a severe threat globally. This digital contagion can lead to social unrest, public health crises, and widespread financial scams. A major contributing factor is the lack of accessible tools that allow users to quickly verify the information they encounter or to understand the manipulative techniques used to create and spread misleading content.
+## 🌐 Live Demo
 
-## 🚀 Features
+- **GitHub Pages**: https://arsheelpatel06.github.io/DeepCheck/
+- **Vercel**: https://deepcheck-qqpwsq00v-arsheel-patels-projects.vercel.app
 
-### Core Detection Capabilities
+## ✨ Features
 
-- **Text Analysis**: Analyze news articles, social media posts, and any text content for misinformation patterns
-- **URL Verification**: Verify the credibility of news articles and web pages
-- **Media Authenticity**: Detect manipulated images, deepfake videos, and synthesized audio
-- **Source Verification**: Cross-reference content with trusted authoritative sources
+### 🔍 **Multi-Content Analysis**
+- **News Checker** - Verify news articles via URL or text
+- **Social Media Checker** - Analyze Instagram Reels and TikTok videos
+- **YouTube Checker** - Detect manipulated video content
+- **File Upload** - Analyze images, videos, audio, and documents
 
-### Advanced Analysis Features
+### 🧠 **AI-Powered Detection**
+- Real-time fake news detection
+- Source credibility analysis using machine learning
+- Deepfake and manipulation detection
+- Cross-verification with trusted sources
 
-- **Red/Green Flag System**: Clear visual indicators showing content authenticity
-- **Detailed Reasoning**: Comprehensive explanations of why content is flagged as suspicious or verified
-- **Trust Score**: Numerical confidence rating for content authenticity
-- **Source Credibility Analysis**: Evaluation of information sources and their reliability
-- **Cross-Verification**: Comparison with multiple trusted sources
+### 📊 **Detailed Results**
+- **Trust Score** (0-100%) with color-coded flags
+- **Detailed Reasoning** explaining why content is flagged
+- **Source Verification** with publisher credibility ratings
+- **Cross-Checking Results** from multiple databases
+- **Risk Assessment** and impact analysis
 
-### User Experience
+### 🎓 **User Education**
+- Simple explanations of verification process
+- Educational content about misinformation techniques
+- Tips for identifying credible sources
+- Interactive learning modules
 
-- **Real-time Results**: Get analysis results in seconds
-- **Interactive Dashboard**: Monitor analysis history and trends
-- **Educational Insights**: Learn about manipulation techniques and digital literacy
-- **Export Reports**: Download detailed analysis reports
-- **Multi-format Support**: Analyze text, images, videos, audio files, and URLs
+### 📝 **History & Tracking**
+- Persistent analysis history using localStorage
+- Search and filter past analyses
+- Export results for research purposes
 
-## 🛠 Technology Stack
-
-- **Frontend**: React 18 with TypeScript
-- **UI Framework**: shadcn/ui components with Tailwind CSS
-- **Animation**: Framer Motion for smooth transitions
-- **Charts**: Recharts for data visualization
-- **3D Graphics**: Three.js with React Three Fiber
-- **Build Tool**: Vite for fast development and building
-- **Package Manager**: npm
-
-## 📦 Installation
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js (v16 or higher)
+- Node.js 18+ 
 - npm or yarn
 
-### Quick Start
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/ArsheelPatel06/DeepCheck.git
+cd DeepCheck
 
-1. **Clone the repository**
+# Install dependencies
+npm install
 
-   ```bash
-   git clone <your-repo-url>
-   cd DeepCheck
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
+# Start development server
+npm run dev
+```
 
 ### Build for Production
-
 ```bash
+# Build for local deployment
 npm run build
+
+# Build for GitHub Pages
+GITHUB_PAGES=true npm run build
 ```
 
-The built files will be in the `dist` directory, ready for deployment.
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Connect your GitHub repository to Vercel
-2. Vercel will automatically detect it's a Vite project
-3. Deploy with default settings
-
-### Deploy to Netlify
-
-1. Connect your GitHub repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `dist`
-
-### Deploy to GitHub Pages
-
-1. Install gh-pages: `npm install --save-dev gh-pages`
-2. Add to package.json scripts: `"deploy": "gh-pages -d dist"`
-3. Run: `npm run build && npm run deploy`
-
-## 🎨 Project Structure
+## 🏗️ Project Structure
 
 ```
-src/
-├── components/
-│   ├── dashboard/          # Main dashboard components
-│   │   ├── dashboard-page.tsx         # Main dashboard container
-│   │   ├── dashboard-sidebar.tsx      # Navigation sidebar
-│   │   ├── news-checker-section.tsx   # News article verification
-│   │   ├── youtube-checker-section.tsx # YouTube video verification
-│   │   ├── social-media-checker-section.tsx # Social media verification
-│   │   ├── results-section.tsx        # Analysis results display
-│   │   ├── history-section.tsx        # Verification history
-│   │   ├── settings-section.tsx       # User settings
-│   │   └── upload-section.tsx         # File upload interface
-│   ├── landing/           # Landing page components
-│   │   └── landing-page.tsx           # Authentication & hero section
-│   └── ui/               # Reusable UI components (cleaned & optimized)
-├── hooks/                # Custom React hooks
-├── lib/                  # Utility functions
-├── pages/               # Page components
-└── assets/              # Static assets
+DeepCheck/
+├── public/                 # Static assets
+│   ├── logo.svg           # Main logo
+│   ├── hero-ai-human.jpg  # Hero image
+│   ├── favicon.ico        # Favicon
+│   └── 404.html          # SPA routing fallback
+├── src/
+│   ├── components/        # React components
+│   │   ├── dashboard/     # Dashboard-specific components
+│   │   ├── landing/       # Landing page components
+│   │   └── ui/           # Reusable UI components
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions
+│   └── pages/            # Page components
+├── .github/
+│   └── workflows/        # GitHub Actions for deployment
+└── package.json
+```
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React 18, TypeScript, Vite
+- **UI Framework**: shadcn/ui, Tailwind CSS
+- **3D Graphics**: Three.js, React Three Fiber
+- **Animation**: Framer Motion
+- **Routing**: React Router
+- **State Management**: React Query, Local Storage
+- **Charts**: Recharts
+- **Icons**: Lucide React
+
+## 🌍 Deployment
+
+### GitHub Pages
+Automatic deployment via GitHub Actions when pushing to `main` branch.
+
+### Vercel
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy to Vercel
+vercel --prod
 ```
 
 ## 🔧 Configuration
 
 ### Environment Variables
+- `GITHUB_PAGES`: Set to `true` for GitHub Pages deployment
+- `CI`: Automatically set in CI environments
+- `GITHUB_ACTIONS`: Automatically set in GitHub Actions
 
-Create a `.env` file in the root directory:
-
-```env
-VITE_APP_NAME=DeepCheck
-VITE_API_URL=your-api-endpoint
-```
-
-### Customization
-
-- **Styling**: Modify `src/index.css` for global styles
-- **Theme**: Update `tailwind.config.ts` for theme customization
-- **Components**: All UI components are in `src/components/ui/`
+### Vite Configuration
+The app automatically detects deployment environment and adjusts base paths accordingly.
 
 ## 🎯 How It Works
 
-1. **Content Input**: Users can input content through three methods:
-
-   - Upload media files (images, videos, audio)
-   - Paste text content
-   - Enter URLs for web content
-
-2. **AI Analysis**: The system analyzes content using multiple detection methods:
-
-   - Text pattern analysis for misinformation indicators
-   - Source credibility verification
-   - Media authenticity checks
-   - Cross-reference with trusted sources
-
-3. **Results Display**: Users receive:
-
-   - Clear red/green flag indicators
-   - Trust score percentages
-   - Detailed reasoning for the assessment
-   - Source verification information
-   - Confidence levels for the analysis
-
-4. **Educational Component**: Users learn:
-   - Why content was flagged
-   - Manipulation techniques used
-   - How to identify similar content in the future
+1. **Content Input**: Users can input news URLs, social media links, or upload files
+2. **AI Analysis**: Advanced ML models analyze content for authenticity markers
+3. **Source Verification**: Cross-reference with trusted news databases and fact-checkers
+4. **Risk Assessment**: Evaluate potential harm and spread patterns
+5. **User Education**: Provide clear explanations and learning resources
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and commit: `git commit -am 'Add feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📝 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Built with [shadcn/ui](https://ui.shadcn.com/) for beautiful components
-- Powered by [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Animations by [Framer Motion](https://www.framer.com/motion/)
+- Built with [Vite](https://vitejs.dev/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+- 3D graphics powered by [Three.js](https://threejs.org/)
+- Deployed on [GitHub Pages](https://pages.github.com/) and [Vercel](https://vercel.com/)
 
-## 🆘 Support
+## 📧 Contact
 
-For support, please open an issue in the GitHub repository or contact the development team.
+For questions, suggestions, or collaborations, please reach out through:
+- GitHub Issues
+- Project Repository: https://github.com/ArsheelPatel06/DeepCheck
 
 ---
 
-**DeepCheck** - Empowering users to combat misinformation through AI-powered analysis and education.
+**Fighting misinformation, one verification at a time.** 🛡️

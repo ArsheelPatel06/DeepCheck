@@ -39,11 +39,11 @@ export function LandingPage({ onLogin }: LandingPageProps) {
         >
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             <div className="flex items-center space-x-3">
-              <img
-                src="/logo.svg"
-                alt="DeepCheck Logo"
-                className="w-10 h-10"
-              />
+                  <img
+                    src={window.location.hostname === 'arsheelpatel06.github.io' ? "/DeepCheck/logo.svg" : "/logo.svg"}
+                    alt="DeepCheck Logo"
+                    className="w-10 h-10"
+                  />
               <h1 className="font-orbitron text-2xl font-bold gradient-neon-text">
                 DeepCheck
               </h1>
@@ -155,11 +155,11 @@ export function LandingPage({ onLogin }: LandingPageProps) {
               transition={{ duration: 1, delay: 0.4 }}
             >
               <Card className="glass p-8 hover-lift">
-                <img
-                  src="/hero-ai-human.jpg"
-                  alt="AI vs Human Detection Visualization"
-                  className="w-full h-auto rounded-lg"
-                />
+                    <img
+                      src={window.location.hostname === 'arsheelpatel06.github.io' ? "/DeepCheck/hero-ai-human.jpg" : "/hero-ai-human.jpg"}
+                      alt="AI vs Human Detection Visualization"
+                      className="w-full h-auto rounded-lg"
+                    />
                 <div className="absolute inset-0 bg-gradient-neon/5 rounded-lg animate-pulse-ai" />
               </Card>
             </motion.div>
