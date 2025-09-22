@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
+import { addToHistory } from './history-section';
 import { 
   Newspaper, 
   Search, 
@@ -55,6 +56,8 @@ export function NewsCheckerSection({ onAnalysisComplete }: NewsCheckerSectionPro
   ];
 
   const analyzeNews = async (url?: string, text?: string) => {
+    // console.log('analyzeNews called with url:', url, 'text:', text);
+    
     if (!url && !text) {
       toast({
         title: "No content to analyze",
@@ -131,7 +134,36 @@ export function NewsCheckerSection({ onAnalysisComplete }: NewsCheckerSectionPro
       description: `Article "${headline.substring(0, 30)}..." has been verified.`,
     });
 
-    onAnalysisComplete(analysis);
+    // Navigate to results page with the analysis
+    const finalResult = {
+      ...analysis,
+      type: 'news',
+      title: headline,
+      content: url || text || 'Text Analysis',
+      contentType: url ? 'url' : 'text'
+    };
+    
+    // Add to history
+    console.log('finalResult before adding to history:', finalResult);
+    
+    const historyItem = {
+      title: headline,
+      content: url || text || 'Text Analysis',
+      contentType: url ? 'url' : 'text',
+      type: 'news' as const,
+      verificationStatus: finalResult.verificationStatus || 'suspicious' as const,
+      trustScore: finalResult.trustScore || 0,
+      confidence: finalResult.confidence || 0,
+      reasoning: finalResult.reasoning,
+      sourceCredibility: finalResult.sourceCredibility,
+      crossChecking: finalResult.crossChecking,
+      riskAssessment: finalResult.riskAssessment
+    };
+    
+    console.log('Adding to history:', historyItem);
+    addToHistory(historyItem);
+    
+    onAnalysisComplete(finalResult);
   };
 
   return (

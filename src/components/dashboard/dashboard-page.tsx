@@ -20,6 +20,7 @@ export function DashboardPage({ onLogout }: DashboardPageProps) {
   const [analysisResults, setAnalysisResults] = useState<any>(null);
 
   const handleAnalysisComplete = (results: any) => {
+    console.log('Dashboard received analysis results:', results);
     setAnalysisResults(results);
     setCurrentView('results');
   };

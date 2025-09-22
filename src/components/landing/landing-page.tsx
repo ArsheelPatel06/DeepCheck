@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ThreeScene } from '@/components/ui/three-scene';
 import { Github, Chrome, Upload, Sparkles, Zap, Shield } from 'lucide-react';
-import heroImage from '@/assets/hero-ai-human.jpg';
 
 interface LandingPageProps {
   onLogin: () => void;
@@ -40,9 +39,9 @@ export function LandingPage({ onLogin }: LandingPageProps) {
         >
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             <div className="flex items-center space-x-3">
-              <img 
-                src="/deepcheck-logo.svg" 
-                alt="DeepCheck Logo" 
+              <img
+                src="/logo.svg"
+                alt="DeepCheck Logo"
                 className="w-10 h-10"
               />
               <h1 className="font-orbitron text-2xl font-bold gradient-neon-text">
@@ -71,29 +70,15 @@ export function LandingPage({ onLogin }: LandingPageProps) {
 
         {/* Hero Section */}
         <main className="flex-1 flex items-center justify-center px-6 py-12">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             {/* Left Content */}
             <motion.div
-              className="text-center lg:text-left space-y-8"
+              className="text-center lg:text-left space-y-8 lg:col-span-3"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <div className="space-y-6">
-                {/* Large Logo */}
-                <motion.div
-                  className="flex justify-center lg:justify-start mb-6"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <img 
-                    src="/deepcheck-logo.svg" 
-                    alt="DeepCheck AI-Powered Misinformation Detection" 
-                    className="w-32 h-32 lg:w-40 lg:h-40 glow-ai"
-                  />
-                </motion.div>
-                
+              <div className="space-y-4">
                 <motion.div
                   className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-ai/10 border border-primary-ai/20 glow-ai"
                   whileHover={{ scale: 1.05 }}
@@ -104,10 +89,10 @@ export function LandingPage({ onLogin }: LandingPageProps) {
                   </span>
                 </motion.div>
                 
-                <h2 className="font-orbitron text-5xl lg:text-7xl font-bold leading-tight">
-                  <span className="gradient-ai-text">COMBAT</span>
+                <h2 className="font-orbitron text-4xl lg:text-5xl font-bold leading-tight">
+                  <span className="gradient-ai-text">Advanced</span>
                   <span className="text-foreground"> </span>
-                  <span className="gradient-human-text">MISINFORMATION</span>
+                  <span className="gradient-human-text">Misinformation Detection</span>
                 </h2>
                 
                 <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
@@ -164,14 +149,14 @@ export function LandingPage({ onLogin }: LandingPageProps) {
 
             {/* Right Content - Hero Image */}
             <motion.div
-              className="relative"
+              className="relative lg:col-span-2"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
             >
               <Card className="glass p-8 hover-lift">
                 <img
-                  src={heroImage}
+                  src="/hero-ai-human.jpg"
                   alt="AI vs Human Detection Visualization"
                   className="w-full h-auto rounded-lg"
                 />

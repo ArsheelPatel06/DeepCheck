@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { addToHistory } from './history-section';
 import { 
   Video, 
   Instagram, 
@@ -72,7 +73,32 @@ export function SocialMediaCheckerSection({ onAnalysisComplete }: SocialMediaChe
       description: `${platform} content has been analyzed.`,
     });
 
-    onAnalysisComplete(analysis);
+    // Navigate to results page with the analysis
+    const finalResult = {
+      ...analysis,
+      type: 'social-media',
+      title: `${platform} ${platform === 'Instagram' ? 'Reel' : 'Video'} Analysis`,
+      content: url,
+      contentType: 'url'
+    };
+    
+    // Add to history
+    addToHistory({
+      title: `${platform} ${platform === 'Instagram' ? 'Reel' : 'Video'} Analysis`,
+      content: url,
+      contentType: 'url',
+      type: 'social-media',
+      platform: platform,
+      verificationStatus: finalResult.verificationStatus || 'suspicious',
+      trustScore: finalResult.trustScore || 0,
+      confidence: finalResult.confidence || 0,
+      reasoning: finalResult.reasoning,
+      sourceCredibility: finalResult.sourceCredibility,
+      crossChecking: finalResult.crossChecking,
+      riskAssessment: finalResult.riskAssessment
+    });
+    
+    onAnalysisComplete(finalResult);
   };
 
   return (

@@ -7,7 +7,6 @@ import {
   History, 
   Settings, 
   LogOut, 
-  Sparkles,
   User,
   Menu,
   X,
@@ -95,10 +94,10 @@ export function DashboardSidebar({ currentView, onViewChange, onLogout }: Dashbo
           transition={{ delay: 0.1 }}
         >
           <div className="flex items-center space-x-3 px-3">
-            <img 
-              src="/deepcheck-logo.svg" 
-              alt="DeepCheck Logo" 
-              className="w-10 h-10 glow-ai"
+            <img
+              src="/logo.svg"
+              alt="DeepCheck Logo"
+              className="w-10 h-10"
             />
             {!isCollapsed && (
               <div>

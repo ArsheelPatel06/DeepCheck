@@ -105,13 +105,19 @@ The built files will be in the `dist` directory, ready for deployment.
 ```
 src/
 ├── components/
-│   ├── dashboard/          # Dashboard components
-│   │   ├── dashboard-page.tsx
-│   │   ├── upload-section.tsx
-│   │   ├── results-section.tsx
-│   │   └── ...
+│   ├── dashboard/          # Main dashboard components
+│   │   ├── dashboard-page.tsx         # Main dashboard container
+│   │   ├── dashboard-sidebar.tsx      # Navigation sidebar
+│   │   ├── news-checker-section.tsx   # News article verification
+│   │   ├── youtube-checker-section.tsx # YouTube video verification
+│   │   ├── social-media-checker-section.tsx # Social media verification
+│   │   ├── results-section.tsx        # Analysis results display
+│   │   ├── history-section.tsx        # Verification history
+│   │   ├── settings-section.tsx       # User settings
+│   │   └── upload-section.tsx         # File upload interface
 │   ├── landing/           # Landing page components
-│   └── ui/               # Reusable UI components
+│   │   └── landing-page.tsx           # Authentication & hero section
+│   └── ui/               # Reusable UI components (cleaned & optimized)
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Utility functions
 ├── pages/               # Page components

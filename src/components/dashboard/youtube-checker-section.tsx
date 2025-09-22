@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
+import { addToHistory } from './history-section';
 import { 
   Youtube, 
   Search, 
@@ -99,7 +100,32 @@ export function YouTubeCheckerSection({ onAnalysisComplete }: YouTubeCheckerSect
       description: "Video has been analyzed for authenticity.",
     });
 
-    onAnalysisComplete(analysis);
+    // Navigate to results page with the analysis
+    const finalResult = {
+      ...analysis,
+      type: 'youtube',
+      title: analysis.videoTitle,
+      content: url,
+      contentType: 'url'
+    };
+    
+    // Add to history
+    addToHistory({
+      title: analysis.videoTitle,
+      content: url,
+      contentType: 'url',
+      type: 'youtube',
+      platform: 'YouTube',
+      verificationStatus: finalResult.verificationStatus || 'suspicious',
+      trustScore: finalResult.trustScore || 0,
+      confidence: finalResult.confidence || 0,
+      reasoning: finalResult.reasoning,
+      sourceCredibility: finalResult.sourceCredibility,
+      crossChecking: finalResult.crossChecking,
+      riskAssessment: finalResult.riskAssessment
+    });
+    
+    onAnalysisComplete(finalResult);
   };
 
   return (
